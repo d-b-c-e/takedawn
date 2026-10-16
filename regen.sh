@@ -19,6 +19,10 @@ set -uo pipefail
 
 BO3="$(cd "$(dirname "$0")" && pwd)"
 RECOMP="${XBOXRECOMP_DIR:-$BO3/../xboxrecomp}"
+# The pinned toolkit submodule, when it is checked out, unless one is named.
+if [[ -z "${XBOXRECOMP_DIR:-}" && -d "$BO3/thirdparty/xboxrecomp/tools" ]]; then
+    RECOMP="$BO3/thirdparty/xboxrecomp"
+fi
 
 # Windows' py launcher. Elsewhere there is none: stand in for it with the
 # repo's .venv when there is one, else python3 (the toolkit's macOS setup
